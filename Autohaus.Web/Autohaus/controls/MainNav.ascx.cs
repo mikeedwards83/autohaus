@@ -7,6 +7,7 @@ namespace Autohaus.Web.UI.Controls
 {
     public partial class MainNav : UserControl
     {
+        
         protected IEnumerable<NavigationItem> NavigationItems
         {
             get { return NavigationService.GetNavigationItems(); }

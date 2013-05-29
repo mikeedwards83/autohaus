@@ -13,10 +13,10 @@
                { %>
     <li class="dropdown">
         <% } %>
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= navItem.Title %> <b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= navItem.NavTitle %> <b class="caret"></b></a>
         <ul class="getstarted-menu" style="display: none">
             <li>
-                <a href="#" class="getstarted" data-placement="bottom" data-toggle="popover" data-content="<%= navItem.PageText %>" data-original-title="<%= navItem.PageTitle %>"></a>
+                <a href="#" class="getstarted" data-placement="bottom" data-toggle="popover" data-content="<%= navItem.Text %>" data-original-title="<%= navItem.Title %>"></a>
             </li>
         </ul>
         <ul class="dropdown-menu">
@@ -30,7 +30,7 @@
                    { %>
             <li>
                 <% } %>
-                <a href="<%= subNavItem.Url %>"><%= subNavItem.Title %></a>
+                <a href="<%= subNavItem.Url %>"><%= subNavItem.NavTitle %></a>
             </li>
                 <% } %>
                     </ul>
@@ -45,7 +45,7 @@
                else
                { %>
     <li> <% } %>
-        <a href="<%= navItem.Url %>"><%= navItem.Title %></a>
+        <a href="<%= navItem.Url %>"><%= navItem.NavTitle %></a>
     </li>
         <% } %>
     <% } %>

@@ -8,27 +8,19 @@ using Sitecore.Data.Items;
 
 namespace Autohaus.Data.Models
 {
-    [SitecoreType]
+    [SitecoreType(AutoMap = true)]
     public class NavigationItem 
     {
-        [SitecoreId]
         public virtual ID Id { get; set; }
 
-        [SitecoreField("NavTitle")]
+        public virtual string NavTitle { get; private set; }
+
         public virtual string Title { get; private set; }
 
-        [SitecoreField("Title")]
-        public virtual string PageTitle { get; private set; }
+        public virtual string Text { get; private set; }
 
-        [SitecoreField("Text")]
-        public virtual string PageText { get; private set; }
-
-        [SitecoreField("ShowInNavBar")]
-        public virtual bool Show { get; private set; }
-
-
-        [SitecoreField("Navigatable")]
         public virtual bool Navigatable { get; private set; }
+
 
         [SitecoreIgnore]
         public bool IsActive

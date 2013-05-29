@@ -21,13 +21,10 @@ namespace Autohaus.Data
 
             var root = service.GetItem<NavigationItem>(_rootId);
 
-            
-
             var navItems = new List<NavigationItem>();
             
-            if(root.Show)
-                navItems.Add(root);
-
+            //we can assume the root must always be shown
+            navItems.Add(root);
             navItems.AddRange(root.SubItems);
 
             //we have to reset the subitems on root to stop the 
