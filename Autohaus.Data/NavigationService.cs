@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Autohaus.Data.Models;
+using Glass.Mapper.Sc;
 using Sitecore;
 using Sitecore.Collections;
 using Sitecore.Data;
@@ -11,45 +13,28 @@ namespace Autohaus.Data
 {
     public static class NavigationService
     {
+        static readonly Guid _rootId = new Guid("{D70CBEED-6DCF-483F-978F-6FC3C8049512}");
+
         public static IEnumerable<NavigationItem> GetNavigationItems()
         {
-            Database db = Context.ContentDatabase ?? Context.Database;
-            Assert.IsNotNull(db, "context database");
-            Item rootItem = db.GetItem("{D70CBEED-6DCF-483F-978F-6FC3C8049512}");
-            return GetNavigationItems(db, rootItem);
-        }
+            var service = new SitecoreService(Context.ContentDatabase ?? Context.Database);
 
-        private static IEnumerable<NavigationItem> GetNavigationItems(Database database, Item rootItem)
-        {
-            Assert.IsNotNull(database, "database");
-            Assert.IsNotNull(rootItem, "root item");
+            var root = service.GetItem<NavigationItem>(_rootId);
+
+            
 
             var navItems = new List<NavigationItem>();
+            
+            if(root.Show)
+                navItems.Add(root);
 
-            var rootNavItem = new NavigationItem(rootItem);
-            if (rootNavItem.Show)
-            {
-                navItems.Add(rootNavItem);
-            }
+            navItems.AddRange(root.SubItems);
 
-            foreach (Item child in rootItem.ReadChildren())
-            {
-                var navItem = new NavigationItem(child);
-
-                if (navItem.Show)
-                {
-                    navItem.SubItems = child.ReadChildren().Select(i => new NavigationItem(i)).Where(n => n.Show);
-                    navItems.Add(navItem);
-                }
-            }
+            //we have to reset the subitems on root to stop the 
+            //rendering thinking that it should be active with child items
+            root.SubItems = new NavigationItem[]{};
 
             return navItems;
-        }
-
-        private static IEnumerable<Item> ReadChildren(this Item item)
-        {
-            Assert.IsNotNull(item, "item");
-            return item.GetChildren(ChildListOptions.IgnoreSecurity);
         }
     }
 }

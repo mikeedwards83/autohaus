@@ -1,57 +1,54 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Glass.Mapper.Sc.Configuration;
+using Glass.Mapper.Sc.Configuration.Attributes;
 using Sitecore;
+using Sitecore.Data;
 using Sitecore.Data.Items;
 
 namespace Autohaus.Data.Models
 {
-    public class NavigationItem : SitecoreItem
+    [SitecoreType]
+    public class NavigationItem 
     {
-        public NavigationItem(Item item)
-            : base(item)
-        {
-            SubItems = new List<NavigationItem>();
-        }
+        [SitecoreId]
+        public virtual ID Id { get; set; }
 
-        public string Title
-        {
-            get { return InnerItem["NavTitle"]; }
-        }
+        [SitecoreField("NavTitle")]
+        public virtual string Title { get; private set; }
 
-        public string PageTitle
-        {
-            get { return InnerItem["Title"]; }
-        }
+        [SitecoreField("Title")]
+        public virtual string PageTitle { get; private set; }
 
-        public string PageText
-        {
-            get { return InnerItem["Text"]; }
-        }
+        [SitecoreField("Text")]
+        public virtual string PageText { get; private set; }
 
-        public bool Show
-        {
-            get { return InnerItem["ShowInNavBar"] == "1"; }
-        }
+        [SitecoreField("ShowInNavBar")]
+        public virtual bool Show { get; private set; }
 
-        public bool Navigatable
-        {
-            get { return InnerItem["Navigatable"] == "1"; }
-        }
 
+        [SitecoreField("Navigatable")]
+        public virtual bool Navigatable { get; private set; }
+
+        [SitecoreIgnore]
         public bool IsActive
         {
             get
             {
-                return InnerItem != null &&
-                    (Context.Item.ID.Equals(InnerItem.ID) || (SubItems != null && SubItems.Any(s => s.IsActive)));
+                return Context.Item.ID.Equals(this.Id) || SubItems.Any(s => s.IsActive);
             }
         }
 
-        public IEnumerable<NavigationItem> SubItems { get; set; }
+        [SitecoreQuery("./*[@ShowInNavBar='1']", IsRelative = true)]
+        public virtual  IEnumerable<NavigationItem> SubItems { get; set; }
 
-        public override string Url
+        [SitecoreIgnore]
+        public string Url
         {
-            get { return Navigatable ? base.Url : "#"; }
+            get { return Navigatable ? ItemUrl : "#"; }
         }
+
+        [SitecoreInfo(SitecoreInfoType.Url)]
+        protected virtual string ItemUrl { get; set; }
     }
 }

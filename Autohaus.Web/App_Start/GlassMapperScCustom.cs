@@ -16,9 +16,10 @@ namespace Autohaus.Web.App_Start
 		}
 
 		public static IConfigurationLoader[] GlassLoaders(){
-			var attributes = new SitecoreAttributeConfigurationLoader("Autohaus.Web");
+            var web = new SitecoreAttributeConfigurationLoader("Autohaus.Web");
+            var data = new SitecoreAttributeConfigurationLoader("Autohaus.Data");
 			
-			return new IConfigurationLoader[]{attributes};
+			return new IConfigurationLoader[]{web, data};
 		}
 		public static void PostLoad(){
 			//Remove the comments to activate CodeFist
