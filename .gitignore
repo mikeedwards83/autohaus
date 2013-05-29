@@ -114,3 +114,4 @@ BuiltFiles*.txt
 #Autohaus
 sc.lib/*.dll
 
+sc.lib/
