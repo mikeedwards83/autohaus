@@ -25,8 +25,8 @@
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>.\Debug\</OutputPath>
     <RecursiveDeployAction>Ignore</RecursiveDeployAction>
-    <SitecoreDeployFolder>G:\__autohaus</SitecoreDeployFolder>
-    <SitecoreWebUrl>http://localhost/</SitecoreWebUrl>
+    <SitecoreDeployFolder>F:\Sitecore\AutoHausGlass\Website</SitecoreDeployFolder>
+    <SitecoreWebUrl>http://autohausglass</SitecoreWebUrl>
     <SitecoreAccessGuid>d523970c-3aed-4fce-8fde-ac0fd4cc04d4</SitecoreAccessGuid>
     <InstallSitecoreConnector>True</InstallSitecoreConnector>
   </PropertyGroup>
