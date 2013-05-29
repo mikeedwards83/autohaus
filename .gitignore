@@ -115,3 +115,4 @@ BuiltFiles*.txt
 sc.lib/*.dll
 
 sc.lib/
+packages/
