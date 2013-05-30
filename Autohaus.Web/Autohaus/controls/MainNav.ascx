@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MainNav.ascx.cs" Inherits="Autohaus.Web.UI.Controls.MainNav" %>
+<%@ Register namespace="Glass.Mapper.Sc.Razor.Web.Ui" assembly="Glass.Mapper.Sc.Razor" tagPrefix="gls" %>
 <%@ Import Namespace="Autohaus.Data.Models" %>
-<ul class="nav">
+<%--<ul class="nav">
     <% foreach (NavigationItem navItem in NavigationItems)
        { %>
         <% if (navItem.SubItems.Any())
@@ -49,4 +50,6 @@
     </li>
         <% } %>
     <% } %>
-                </ul>
+                </ul>--%>
+
+<gls:GlassRazorControl runat="server" Path="/sitecore/layout/Glass Razor/Controls/MainNav"/>

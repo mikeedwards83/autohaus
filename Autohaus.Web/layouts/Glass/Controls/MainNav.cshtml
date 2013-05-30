@@ -1,0 +1,58 @@
+@using Autohaus.Data.Models
+@inherits Glass.Mapper.Sc.Razor.Web.Ui.TemplateBase<IEnumerable<Autohaus.Data.Models.NavigationItem>>
+<ul class="nav">
+    @foreach (NavigationItem navItem in Model)
+    {
+        if (navItem.SubItems.Any())
+        {
+            if (navItem.IsActive)
+            {
+                <li class="dropdown active">
+                    @RenderDropdown(navItem)
+                </li>
+            }
+            else
+            {
+                <li class="dropdown">
+                    @RenderDropdown(navItem)
+                </li>
+            }
+        }
+        else
+        {
+            @RenderLink(navItem)
+        }
+    }
+</ul>
+
+        @helper RenderDropdown(NavigationItem navItem){
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">@navItem.NavTitle  <b class="caret"></b></a>
+            <ul class="getstarted-menu" style="display: none">
+                <li>
+                    <a href="#" class="getstarted" data-placement="bottom" data-toggle="popover" data-content="@navItem.Text " data-original-title="@navItem.Title "></a>
+                </li>
+            </ul>
+            <ul class="dropdown-menu">
+                @foreach (NavigationItem subNavItem in navItem.SubItems)
+                {
+                        @RenderLink(subNavItem)
+                }
+            </ul>
+        }
+                
+        
+        @helper RenderLink(NavigationItem navItem)
+        {
+            if (navItem.IsActive)
+            {
+                <li class="active">
+                    <a href="@navItem.Url">@navItem.NavTitle </a>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a href="@navItem.Url">@navItem.NavTitle </a>
+                </li>
+            }
+        }

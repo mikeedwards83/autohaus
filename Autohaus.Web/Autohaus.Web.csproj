@@ -56,6 +56,12 @@
     <Reference Include="Glass.Mapper.Sc.CastleWindsor">
       <HintPath>..\packages\Glass.Mapper.Sc.CastleWindsor.3.0.4.20-beta\lib\net40\Glass.Mapper.Sc.CastleWindsor.dll</HintPath>
     </Reference>
+    <Reference Include="Glass.Mapper.Sc.Razor">
+      <HintPath>..\packages\Glass.Mapper.Sc.Razor.3.0.3.31-beta\lib\net40\Glass.Mapper.Sc.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Glass.Mapper.Sc.Razor.CastleWindsor">
+      <HintPath>..\packages\Glass.Mapper.Sc.Razor.CastleWindsor.3.0.2.17-beta\lib\net40\Glass.Mapper.Sc.Razor.CastleWindsor.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\sc.lib\HtmlAgilityPack.dll</HintPath>
       <Private>False</Private>
@@ -75,6 +81,9 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorEngine">
+      <HintPath>..\packages\RazorEngine.3.2.0\lib\net40\RazorEngine.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Buckets">
       <HintPath>..\sc.lib\Sitecore.Buckets.dll</HintPath>
@@ -125,6 +134,10 @@
     <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -138,6 +151,7 @@
   <ItemGroup>
     <Compile Include="App_Start\GlassMapperSc.cs" />
     <Compile Include="App_Start\GlassMapperScCustom.cs" />
+    <Compile Include="App_Start\GlassMapperScRazor.cs" />
     <Compile Include="Autohaus\controllers\CarsController.cs" />
     <Compile Include="Autohaus\controllers\CarSearchController.cs" />
     <Compile Include="Autohaus\controllers\FacetController.cs" />
@@ -245,6 +259,7 @@
     <Compile Include="Autohaus\controls\Slideshow.ascx.designer.cs">
       <DependentUpon>Slideshow.ascx</DependentUpon>
     </Compile>
+    <Compile Include="layouts\Glass\Controls\MainNav.cshtml.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -360,6 +375,10 @@
     <Content Include="Autohaus\Main.aspx" />
     <Content Include="Autohaus\js\vendor\datajs-1.1.0.js" />
     <Content Include="Autohaus\js\vendor\datajs-1.1.0.min.js" />
+    <Content Include="Data\Packages\Glass.Mapper.Sc.Razor.Package.xml" />
+    <Content Include="Sitecore Modules\Shell\Glass\Mapper\Razor\BehindRazor.xml" />
+    <Content Include="Sitecore Modules\Shell\Glass\Mapper\Razor\DynamicRazor.xml" />
+    <Content Include="Sitecore Modules\Shell\Glass\Mapper\Razor\TypedRazor.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Autohaus.Custom\Autohaus.Custom.csproj">
@@ -380,7 +399,14 @@
   <ItemGroup>
     <Content Include="App_Config\Include\Glass.Mapper.Sc.Mvc.config" />
     <Content Include="App_Config\Include\Glass.Mapper.Sc.CodeFirst.config.exclude" />
+    <Content Include="Data\Packages\Glass.Mapper.Sc.Razor.Package.zip" />
+    <Content Include="App_Config\Include\Glass.Mapper.Sc.Razor.config" />
+    <Content Include="layouts\Glass\Controls\MainNav.cshtml" />
     <None Include="packages.config" />
+    <Content Include="Sitecore Modules\Shell\Glass\Mapper\Razor\Templates\TypedRazorTemplate.cshtml.temp" />
+    <Content Include="Sitecore Modules\Shell\Glass\Mapper\Razor\Templates\DynamicRazorTemplate.cshtml.temp" />
+    <Content Include="Sitecore Modules\Shell\Glass\Mapper\Razor\Templates\BehindRazorTemplate.cshtml.temp" />
+    <Content Include="Sitecore Modules\Shell\Glass\Mapper\Razor\Templates\BehindRazorTemplate.cshtml.cs.temp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Config\Include\WWW.Autohaus.CD.config">
